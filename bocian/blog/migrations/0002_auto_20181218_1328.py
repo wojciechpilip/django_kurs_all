@@ -2,8 +2,8 @@
 
 import datetime
 from django.db import migrations, models
-from django.utils.timezone import utc
 import django.utils.timezone
+from django.utils.timezone import utc
 
 
 class Migration(migrations.Migration):
@@ -13,16 +13,20 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.AlterModelOptions(
+            name='wpis',
+            options={'verbose_name_plural': 'Wpisy'},
+        ),
         migrations.AddField(
             model_name='wpis',
             name='created',
-            field=models.DateField(default=django.utils.timezone.now),
+            field=models.DateTimeField(default=django.utils.timezone.now),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='wpis',
-            name='modyfied',
-            field=models.DateField(default=django.utils.timezone.now),
+            name='modified',
+            field=models.DateTimeField(default=django.utils.timezone.now),
             preserve_default=False,
         ),
     ]

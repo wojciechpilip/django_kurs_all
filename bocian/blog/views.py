@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import Template, Context, loader
@@ -9,10 +10,14 @@ from .models import Wpis
 
 def index(request):
     wpisy = Wpis.objects.all()
+    wybrany_wpis = wpisy.first()
 
+    paginator = Paginator(wpisy, 20)  # pokaż 1 wpisie na stronie
+    page = request.GET.get('page')
+    wpisy = paginator.get_page(page)
     context = {
         'wpisy': wpisy,
-        'wybrany_wpis': wpisy[0]
+        'wybrany_wpis': wybrany_wpis
 
     }
     return render(

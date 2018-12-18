@@ -13,11 +13,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='wpis',
             name='created',
-            field=models.DateField(auto_now_add=True),
+            field=models.DateTimeField(auto_now_add=True),
         ),
         migrations.AlterField(
             model_name='wpis',
-            name='modyfied',
-            field=models.DateField(auto_now=True),
+            name='modified',
+            field=models.DateTimeField(auto_now=True),
         ),
     ]
