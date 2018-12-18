@@ -1,30 +1,22 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Stroba testowa</title>
-    <link rel="stylesheet" href="{% static 'blog/style.css' %}">
-</head>
-<body>
-Koszt chleba to: {{ chleb }} <br>
-Koszt wody to: {{ woda }}
-<div>
+{% extends 'base.html' %}
 
-    Tytuł: {{ wpis.tytul }} <br>
-    Treść: {{ wpis.tresc }}
+{% block title %} Lista wpisów {% endblock %}
 
-
+{% block lista_wpisow %}
+<div class="sidebar">
+    <div class="lista_wpisow">
+        <ul>
+            {% for wpis in wpisy %}
+                <li>{{ wpis.tytul }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
+{% endblock %}
 
-<div class="liczby">
-    {% for i in liczby %}
-    {% ifnotequal i 5 %}
-    {{ True}} <br>
-    {% else %}
-    {{ False }} <br>
-    {% endifnotequal %}
-    {% endfor %}
+{% block wpis %}
+<div class="wpis">
+    <h1>{{ wybrany_wpis.tytul }}</h1>
+    <div class="tresc_wpisu">{{ wybrany_wpis.tresc }}</div>
 </div>
-</body>
-</html>
+{% endblock %}

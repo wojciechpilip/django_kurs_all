@@ -10,13 +10,28 @@ from .models import Wpis
 def index(request):
     wpisy = Wpis.objects.all()
 
-    wynik = ""
+    context = {
+        'wpisy': wpisy,
+        'wybrany_wpis': wpisy[0]
 
-    for w in wpisy:
-        wynik += f"<li>{w.tytul}</li>"
+    }
+    return render(
+        request=request,
+        template_name='blog/index.html',
+        context=context
+    )
 
-    wynik = f"<ul>{wynik}</ul>"
-    return HttpResponse(wynik)
+
+def details(request, id_wpisu):
+    wpis = Wpis.objects.get(pk=id_wpisu)
+
+    return render(
+        request=request,
+        template_name='blog/index.html',
+        context={'wybrany_wpis': wpis}
+    )
+
+
 
 
 # def index_temp(request):

@@ -1,1 +1,9 @@
-div {color: red}
+body {
+    margin: 20px;
+    padding: 10px;
+    background-color: lightgray;
+    font: 15px 'Trebuchet MS', Arial, Helvetica, sanf-serif;
+    color: black;
+    border-top: 1px #880a0b dashed;
+}
+
