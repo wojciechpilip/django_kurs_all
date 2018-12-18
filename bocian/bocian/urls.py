@@ -22,6 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', index),
     path('testtemplate', index_temp),
-    path('blog/wpisy/<id_wpisu>', details)
+    path('blog/wpisy/<id_wpisu>', details, name='szczegoly-wpisu')
 
 ]

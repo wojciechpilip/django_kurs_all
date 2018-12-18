@@ -7,3 +7,7 @@ body {
     border-top: 1px #880a0b dashed;
 }
 
+.sidebar {
+    float: right;
+    padding-right: 30px;
+}

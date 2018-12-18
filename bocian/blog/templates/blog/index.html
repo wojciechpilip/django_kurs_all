@@ -7,7 +7,7 @@
     <div class="lista_wpisow">
         <ul>
             {% for wpis in wpisy %}
-                <li>{{ wpis.tytul }}</li>
+            <li><a href="{% url 'szczegoly-wpisu' id_wpisu=wpis.id %}">{{ wpis.tytul }}</a></li>
             {% endfor %}
         </ul>
     </div>
