@@ -1,0 +1,26 @@
+[
+{
+    "model": "blog.wpis",
+    "pk": 1,
+    "fields": {
+        "tytul": "To jest pierwszy wpis",
+        "tresc": "Tre\u015b\u0107 pierwszego wpisu. Potem j\u0105 rozbuduj\u0119"
+    }
+},
+{
+    "model": "blog.wpis",
+    "pk": 2,
+    "fields": {
+        "tytul": "Drugi wpis",
+        "tresc": "Zabawa by\u0142a przednia"
+    }
+},
+{
+    "model": "blog.wpis",
+    "pk": 3,
+    "fields": {
+        "tytul": "Trzeci wpis",
+        "tresc": "Zabawa by\u0142a przednia"
+    }
+}
+]
