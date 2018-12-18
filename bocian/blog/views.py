@@ -29,11 +29,21 @@ def index(request):
 
 def details(request, id_wpisu):
     wpis = Wpis.objects.get(pk=id_wpisu)
+    tagi = wpis.tagi.all()
+    wpisy = Wpis.objects.all()
 
+    paginator = Paginator(wpisy, 20)  # pokaż 1 wpisie na stronie
+    page = request.GET.get('page')
+    wpisy = paginator.get_page(page)
     return render(
         request=request,
         template_name='blog/index.html',
-        context={'wybrany_wpis': wpis}
+        context={
+            'wybrany_wpis': wpis,
+            'wpisy': wpisy,
+            'page': page,
+            'tagi': tagi
+        }
     )
 
 
@@ -70,3 +80,7 @@ def index_temp(request):
         template_name='blog/index.html',
         context=context
     )
+
+
+def wpisy_taga(request, nazwa_taga):
+    pass
