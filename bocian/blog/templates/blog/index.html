@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stroba testowa</title>
+    <link rel="stylesheet" href="{% static 'blog/style.css' %}">
+</head>
+<body>
+Koszt chleba to: {{ chleb }} <br>
+Koszt wody to: {{ woda }}
+<div>
+
+    Tytuł: {{ wpis.tytul }} <br>
+    Treść: {{ wpis.tresc }}
+
+
+</div>
+
+<div class="liczby">
+    {% for i in liczby %}
+    {% ifnotequal i 5 %}
+    {{ True}} <br>
+    {% else %}
+    {{ False }} <br>
+    {% endifnotequal %}
+    {% endfor %}
+</div>
+</body>
+</html>
