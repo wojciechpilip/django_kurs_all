@@ -12,7 +12,7 @@ class TimestampModel(models.Model):
 
 
 class Tag(models.Model):
-    nazwa = models.CharField(max_length=200)
+    nazwa = models.CharField(max_length=200, unique=True)
 
     def __str__(self):
        return self.nazwa

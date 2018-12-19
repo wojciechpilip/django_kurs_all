@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, Http404
+from django.shortcuts import render, get_object_or_404
 from django.template import Template, Context, loader
 
 from .models import Wpis, Tag
@@ -9,7 +9,11 @@ from .models import Wpis, Tag
 # Create your views here.
 
 def index(request):
-    wpisy = Wpis.objects.all()
+    order_param = request.GET.get('orderby')
+    if order_param in ['created', 'id', 'modified', 'tagi', 'tresc', 'tytul']:
+        wpisy = Wpis.objects.all().order_by(order_param)
+    else:
+        wpisy = Wpis.objects.all()
     wybrany_wpis = wpisy.first()
 
     paginator = Paginator(wpisy, 20)  # pokaż 1 wpisie na stronie
@@ -28,6 +32,7 @@ def index(request):
 
 
 def details(request, id_wpisu):
+
     wpis = Wpis.objects.get(pk=id_wpisu)
     tagi = wpis.tagi.all()
     wpisy = Wpis.objects.all()
@@ -42,7 +47,8 @@ def details(request, id_wpisu):
             'wybrany_wpis': wpis,
             'wpisy': wpisy,
             'page': page,
-            'tagi': tagi
+            'tagi': tagi,
+            'komentarze': ['Komentarz1']
         }
     )
 
@@ -83,7 +89,12 @@ def index_temp(request):
 
 
 def wpisy_taga(request, nazwa_taga):
-    tag = Tag.objects.get(nazwa=nazwa_taga)
+#    try:
+#        tag = Tag.objects.get(nazwa=nazwa_taga)
+#    except Tag.DoseNotExist:
+#        raise Http404
+    tag = get_object_or_404(Tag, pk=nazwa_taga)
+
     wpisy = tag.wpis_set.all()
 
     context = {

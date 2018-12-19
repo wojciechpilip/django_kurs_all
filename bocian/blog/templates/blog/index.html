@@ -3,6 +3,11 @@
 {% block title %} Lista wpisów {% endblock %}
 
 {% block lista_wpisow %}
+<div class="filters">
+    <a href="{% url 'wpisy-main' %}?orderby=tytul">Po tytule</a>
+    <a href="{% url 'wpisy-main' %}?orderby=id">Po id</a>
+</div>
+
 <div class="sidebar">
     <div class="lista_wpisow">
         <ul>
@@ -35,8 +40,14 @@
     <div class="tresc_wpisu">{{ wybrany_wpis.tresc }}</div>
     <div class="tag_list">
         {% for tag in tagi %}
-        {{ tag.nazwa }}
+        <a href="{% url 'wpisu-po-tagu' nazwa_taga=tag.nazwa %}?page={{page}}">{{ tag.nazwa }}</a>
         {% endfor %}
     </div>
 </div>
+
+<div class="komentarze">
+        {% for k in wybrany_wpis.Komentarz_set.all %}
+    {{ k.tytul }}<br><small>{{ k.nick }} | {{ k.tresc }} </small>
+        {% endfor %}
+ </div>
 {% endblock %}

@@ -18,11 +18,14 @@ from blog.views import index, index_temp, details, wpisy_taga
 from django.contrib import admin
 from django.urls import path
 
+from komentarze.views import dodaj_komentarz
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blog/', index),
+    path('blog/', index, name='wpisy-main'),
     path('testtemplate', index_temp),
     path('blog/wpisy/<id_wpisu>', details, name='szczegoly-wpisu'),
-    path('blog/wpisy/tag/<nazwa_taga>', wpisy_taga, name='wpisu-po-tagu')
+    path('blog/wpisy/tag/<nazwa_taga>', wpisy_taga, name='wpisu-po-tagu'),
+    path('komentarze/', dodaj_komentarz),
 
 ]
