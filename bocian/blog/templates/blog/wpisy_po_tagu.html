@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block lista_wpisow %}
+
+{% for wpis in wpisy %}
+
+<div>
+    <h3><a href="">{{ wpis.tytul }}</a></h3>
+    <small>Data utworzenia: {{ wpis.created }}</small>
+
+</div>
+{% endfor %}
+
+{% endblock %}

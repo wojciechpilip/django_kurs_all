@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import Template, Context, loader
 
-from .models import Wpis
+from .models import Wpis, Tag
 
 
 # Create your views here.
@@ -83,4 +83,17 @@ def index_temp(request):
 
 
 def wpisy_taga(request, nazwa_taga):
-    pass
+    tag = Tag.objects.get(nazwa=nazwa_taga)
+    wpisy = tag.wpis_set.all()
+
+    context = {
+
+        'wpisy': wpisy,
+        'tag': tag
+    }
+
+    return render(
+        request=request,
+        template_name='blog/wpisy_po_tagu.html',
+        context=context
+    )
