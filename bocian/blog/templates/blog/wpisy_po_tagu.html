@@ -5,7 +5,7 @@
 {% for wpis in wpisy %}
 
 <div>
-    <h3><a href="">{{ wpis.tytul }}</a></h3>
+    <h3><a href="{% url 'szczegoly-wpisu' id_wpisu=wpis.id %}">{{ wpis.tytul }}</a></h3>
     <small>Data utworzenia: {{ wpis.created }}</small>
 
 </div>
