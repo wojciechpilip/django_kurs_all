@@ -3,6 +3,11 @@
 {% block title %} Lista wpisów {% endblock %}
 
 {% block lista_wpisow %}
+<div class="filters">
+    <a href="{% url 'wpisy-main' %}?orderby=tytul">Po tytule</a>
+    <a href="{% url 'wpisy-main' %}?orderby=created">Po dacie utworzenia</a>
+
+</div>
 <div class="sidebar">
     <div class="lista_wpisow">
         <ul>
@@ -35,8 +40,30 @@
     <div class="tresc_wpisu">{{ wybrany_wpis.tresc }}</div>
     <div class="tag_list">
         {% for tag in tagi %}
-        {{ tag.nazwa }}
+        <a href="{% url 'wpisy-po-tagu' nazwa_taga=tag.nazwa %}">{{ tag.nazwa }}</a>
         {% endfor %}
     </div>
 </div>
+Tutaj chcę dodać komentarz...
+<form method="POST" action="{% url 'szczegoly-wpisu' id_wpisu=wybrany_wpis.id %}">
+    {% csrf_token %}
+    nick: <input type="text" name="nick"><br>
+    email: <input type="text" name="email"><br>
+    tytul: <input type="text" name="tytul"><br>
+    tresc: <textarea name="tresc"></textarea><br>
+    <button type="submit">Komentuj</button>
+</form>
+
+A tutaj będą komentarze:
+{% for k in wybrany_wpis.komentarz_set.all %}
+    <div class="comment">
+    {{k.tytul}}<br>
+        <small>{{k.nick}} | {{k.created}}</small>
+    <br>
+        {{ k.tresc }}
+
+    </div>
+{% endfor %}
+
+
 {% endblock %}

@@ -1,0 +1,8 @@
+
+<form method="POST" action="{% url 'wpisy-details'  %}">
+    {% csrf_token %}
+    Marka: <input type="text" name="marka"><br>
+    Model: <input type="text" name="model"><br>
+    <button type="submit">Dodaj</button>
+
+</form>

@@ -1,4 +1,4 @@
-"""bocian URL Configuration
+"""formularze URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -13,16 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from blog.views import index, index_temp, details, wpisy_taga
-
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import TemplateView
+
+from auta.views import dodaj
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blog/', index, name='wpisy-main'),
-    path('testtemplate', index_temp),
-    path('blog/wpisy/<id_wpisu>', details, name='szczegoly-wpisu'),
-    path('blog/wpisy/tag/<nazwa_taga>', wpisy_taga, name='wpisy-po-tagu')
+    path('', TemplateView.as_view(template_name='auta/formularz.html')),
+    path('dodaj', dodaj)
+
 
 ]
