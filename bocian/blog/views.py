@@ -29,6 +29,7 @@ def index(request):
 
 def details(request, id_wpisu):
     wpis = Wpis.objects.get(pk=id_wpisu)
+<<<<<<< HEAD
     wpisy = Wpis.objects.all()
 
     paginator = Paginator(wpisy, 20)  # pokaż 1 wpisie na stronie
@@ -39,13 +40,28 @@ def details(request, id_wpisu):
         'wybrany_wpis': wpis
 
     }
+=======
+    tagi = wpis.tagi.all()
+    wpisy = Wpis.objects.all()
+>>>>>>> 5b7c89882e76f9d1a0d3a2862673756ddce3fc12
 
+    paginator = Paginator(wpisy, 20)  # pokaż 1 wpisie na stronie
+    page = request.GET.get('page')
+    wpisy = paginator.get_page(page)
     return render(
         request=request,
         template_name='blog/index.html',
         context={
+<<<<<<< HEAD
             'wpisy': wpisy,
             'wybrany_wpis': wpis}
+=======
+            'wybrany_wpis': wpis,
+            'wpisy': wpisy,
+            'page': page,
+            'tagi': tagi
+        }
+>>>>>>> 5b7c89882e76f9d1a0d3a2862673756ddce3fc12
     )
 
 
@@ -83,6 +99,7 @@ def index_temp(request):
         context=context
     )
 
+<<<<<<< HEAD
 def wpisy_taga(request, nazwa_taga):
     tag = Tag.objects.get()
     wybrany_wpis = wpisy.first()
@@ -100,3 +117,8 @@ def wpisy_taga(request, nazwa_taga):
         template_name='blog/index.html',
         context=context
     )
+=======
+
+def wpisy_taga(request, nazwa_taga):
+    pass
+>>>>>>> 5b7c89882e76f9d1a0d3a2862673756ddce3fc12

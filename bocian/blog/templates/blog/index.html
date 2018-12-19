@@ -7,7 +7,7 @@
     <div class="lista_wpisow">
         <ul>
             {% for wpis in wpisy %}
-            <li><a href="{% url 'szczegoly-wpisu' id_wpisu=wpis.id %}">{{ wpis.tytul }}</a></li>
+            <li><a href="{% url 'szczegoly-wpisu' id_wpisu=wpis.id %}?page={{page}}">{{ wpis.tytul }}</a></li>
             {% endfor %}
         </ul>
     </div>
@@ -33,5 +33,10 @@
 <div class="wpis">
     <h1>{{ wybrany_wpis.tytul }}</h1>
     <div class="tresc_wpisu">{{ wybrany_wpis.tresc }}</div>
+    <div class="tag_list">
+        {% for tag in tagi %}
+        {{ tag.nazwa }}
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
