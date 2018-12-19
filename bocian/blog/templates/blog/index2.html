@@ -48,12 +48,9 @@
 {{ errors }}
 </div>
 Tutaj chcę dodać komentarz...
-<form method="POST" action="{% url 'szczegoly-wpisu' id_wpisu=wybrany_wpis.id %}">
+<form method="POST" action="{% url 'szczegoly-wpisu2' id_wpisu=wybrany_wpis.id %}">
     {% csrf_token %}
-    nick: <input type="text" name="nick"><br>
-    email: <input type="text" name="email"><br>
-    tytul: <input type="text" name="tytul"><br>
-    tresc: <textarea name="tresc"></textarea><br>
+    {{ form.as_p }}
     <button type="submit">Komentuj</button>
 </form>
 
