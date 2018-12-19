@@ -8,7 +8,7 @@ class AdminWpis(admin.ModelAdmin):
     list_display = ['id', 'tytul','created', 'modified']
     search_fields = ['tytul', 'tresc']
     readonly_fields = ['created', 'modified']
-
+    filter_horizontal = ['tagi',]
 
 admin.site.register(Wpis, AdminWpis)
 
